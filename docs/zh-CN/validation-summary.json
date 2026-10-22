@@ -1,0 +1,134 @@
+{
+  "analysis_date_utc": "2026-10-22",
+  "upstream_repository": "https://github.com/google-research/harness2",
+  "upstream_commit": "1cfe254e8d25b15f37048c3730134686abe60335",
+  "python_version": "3.12.14",
+  "scope": "Official deterministic local workflow only; no LLM, external judge, real benchmark, installation or model credentials. No OS-level no-network sandbox was created.",
+  "unit_tests": {
+    "command": "python3 -B -m unittest discover -s tests -p test_workflow.py -v",
+    "tests_run": 5,
+    "passed": 5,
+    "failed": 0,
+    "elapsed_seconds": 5.01
+  },
+  "demo": {
+    "command": "python3 -B -m harness2.cli.demo --output <temporary-output>/demo --k 2 --mode both",
+    "k": 2,
+    "modes": [
+      "parallel",
+      "sequential"
+    ],
+    "first_run": {
+      "domain": "accounting",
+      "n_tasks": 2,
+      "seed": null,
+      "done": 2,
+      "failed": 0,
+      "tasks": [
+        {
+          "task": "ledger-1",
+          "status": "ok",
+          "library_entries_before": {
+            "agg": 0,
+            "seq": 0
+          }
+        },
+        {
+          "task": "ledger-2",
+          "status": "ok",
+          "library_entries_before": {
+            "agg": 1,
+            "seq": 1
+          }
+        }
+      ],
+      "execution_count": 28,
+      "editor_calls": 32
+    },
+    "resume": {
+      "domain": "accounting",
+      "n_tasks": 2,
+      "seed": null,
+      "done": 2,
+      "failed": 0,
+      "tasks": [
+        {
+          "task": "ledger-1",
+          "status": "skipped",
+          "library_entries_before": {
+            "agg": 0,
+            "seq": 0
+          }
+        },
+        {
+          "task": "ledger-2",
+          "status": "skipped",
+          "library_entries_before": {
+            "agg": 1,
+            "seq": 1
+          }
+        }
+      ],
+      "execution_count": 0,
+      "editor_calls": 0
+    }
+  },
+  "task_results": [
+    {
+      "task": "ledger-1",
+      "input": "amount\n100.25\n-20.10\n5.00\n",
+      "base_answer": "Total: 105.25\n",
+      "selected": {
+        "agg": {
+          "label": "agg1",
+          "answer": "Total: 85.15\n",
+          "R": 8,
+          "P": 6
+        },
+        "seq": {
+          "label": "c1",
+          "answer": "Total: 85.15\n",
+          "R": 8,
+          "P": 6
+        }
+      }
+    },
+    {
+      "task": "ledger-2",
+      "input": "amount\n35.50\n-10.25\n-5.00\n",
+      "base_answer": "Total: 35.50\n",
+      "selected": {
+        "agg": {
+          "label": "agg2",
+          "answer": "Total: 20.25\n",
+          "R": 8,
+          "P": 6
+        },
+        "seq": {
+          "label": "c2",
+          "answer": "Total: 20.25\n",
+          "R": 8,
+          "P": 6
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Demo editor, selector and reflector are scripted, not models.",
+    "Demo editor does not consult the library to choose edits; library plumbing is tested, transfer effectiveness is not.",
+    "Unit test money amounts are mocks, not incurred costs.",
+    "No claim of paper-score, real-cost, latency, sandbox, or integration reproduction."
+  ],
+  "evidence_sha256": {
+    "demo-first.json": "ae26f2fd3fd8aa79e90662e560dae575b745b8d0563bb5ff042f32089f7c4da3",
+    "demo-first.log": "b2fbf1e5738643bfd5e1feb84dd85e3d0d8e11dea0b0442590235a89169a28a3",
+    "demo-resume.json": "8a5cbf988c8af5dc2be7c62c8ebb8aad41330f0a4c3cf1adb531b1e3c79119b4",
+    "demo-resume.log": "d6141cb6cdad588b0852b7aaf5e6e17b662b352fd0bd3890603a363c6a7cbd92",
+    "probe.md": "408eca52fc978cdfde2cd49f0dc398962d927a8e7df221f7002c74bb6b38d13c",
+    "proposal.diff": "6077823cf216637c3bd8efa382316c74d39fbc3ea62c1630490038a57a66ff08",
+    "retained-experience.md": "84b374139edf69bdaf78bde03d558030beed67aa6ca75ea2e628586da0bb4e75",
+    "selected-answer.txt": "d82f8ed9d55d9de92a36e0dc150ed396fda95acb5049b5668c8aac1575637b90",
+    "trace.json": "3474bd32c6a2a1ad850905f9a0cd9f241178190f3a60730d7473180cb4f9973d",
+    "unit-tests.log": "6d263e9924a9fd7e3011dc0ab57994c0f620d00f4527b86b0d189d1d2bd93b89"
+  }
+}
